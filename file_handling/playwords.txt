@@ -1,0 +1,4 @@
+pillow
+mirror
+kettle
+pencil
