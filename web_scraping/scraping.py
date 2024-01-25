@@ -17,14 +17,17 @@ soup = BeautifulSoup (response.content, 'html.parser')
 articles = soup.find_all ('article', class_='css-8atqhb')
 data = []
 
-for article in articles [:10]:
-    title = article.find ('h2', class_='css-1vvhd4r').text.strip()
-    description = article.find ('p', class_='css-1echdzn').text.strip()
-    data.append ({'title':title,'description': description})
+
 
 with open ('nytimes.csv', 'w', newline = '') as file:
     writer = csv.DictWriter(file, fieldnames = ['title','description'])
     writer.writeheader()
     writer.writerows (data)
+
+    for article in articles [:10]:
+        title = article.find ('h2', class_='css-1vvhd4r').text.strip()
+        description = article.find ('p', class_='css-1echdzn').text.strip()
+        data.append ({'title':title,'description': description})
+   
 
     print (soup)
